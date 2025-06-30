@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.count-display {
+  margin-bottom: 30px;
+}
+
+#count {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.counter-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Increment Button Style */
+.increment-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #28a745; /* Green */
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.increment-btn:hover {
+  background-color: #218838;
+}
+
+/* Decrement Button Style */
+.decrement-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #dc3545; /* Red */
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.decrement-btn:hover {
+  background-color: #c82333;
+}
