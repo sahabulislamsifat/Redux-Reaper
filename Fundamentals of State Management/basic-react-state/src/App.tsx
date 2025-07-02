@@ -126,11 +126,11 @@ function App() {
   const [userInfo, dispatch] = useReducer(reducer, initialState);
   // console.log(userInfo);
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: "FIELD_UPDATE",
       payload: {
-        field: e.target.name,
+        field: e.target.name as keyof State,
         value: e.target.value,
       },
     });
