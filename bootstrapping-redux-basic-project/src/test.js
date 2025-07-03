@@ -79,8 +79,8 @@ const totalPrice = (amount, discount) => amount - amount * discount;
 // console.log(totalPrice(100, 0.3));
 // console.log(totalPrice(100, 0.5));
 
-const withDiscount = totalPrice(0.3);
+// const withDiscount = totalPrice(0.3);
 
-console.log(withDiscount(100));
-console.log(withDiscount(200));
-console.log(withDiscount(350));
+// console.log(withDiscount(100));
+// console.log(withDiscount(200));
+// console.log(withDiscount(350));
