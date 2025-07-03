@@ -1,9 +1,9 @@
 import { produce } from "immer";
 
 // Pure function
-const add = (x, y) => {
-  return x + y;
-};
+// const add = (x, y) => {
+//   return x + y;
+// };
 
 // console.log(add(5, 6));
 // console.log(add(7, 6));
@@ -55,5 +55,32 @@ const employee2 = produce(employee, (draft) => {
 
 // employee2.city = "CTG";
 
-console.log(employee);
-console.log(employee2);
+// console.log(employee);
+// console.log(employee2);
+
+//* Currying / Functional Curry
+
+//Normal ->
+// const add = (a, b) => a + b;
+// console.log(add(5, 5));
+
+// Currying ->
+// const add = (a) => (b) => a + b;
+// console.log(add(5)(5));
+
+// function add(a) {
+//   return function (b) {
+//     return a + b;
+//   };
+// }
+// console.log(add(2));
+
+const totalPrice = (amount, discount) => amount - amount * discount;
+// console.log(totalPrice(100, 0.3));
+// console.log(totalPrice(100, 0.5));
+
+const withDiscount = totalPrice(0.3);
+
+console.log(withDiscount(100));
+console.log(withDiscount(200));
+console.log(withDiscount(350));
