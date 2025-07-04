@@ -1,14 +1,15 @@
 import Logo from "@/assets/Logo";
 import { Link } from "react-router";
+import { ModeToggle } from "../mood-toggle";
 
 const Navbar = () => {
   return (
-    <header className="bg-white shadow-sm">
+    <header className="shadow-sm">
       <div className="container mx-auto px-5 py-3 flex items-center justify-between">
         {/* Logo and Title */}
         <div className="flex items-center space-x-2">
           <Logo />
-          <h1 className="text-xl font-bold text-gray-800">
+          <h1 className="text-xl font-bold dark:text-white text-gray-800">
             <span className="text-green-600">Task</span> Master
           </h1>
         </div>
@@ -28,6 +29,7 @@ const Navbar = () => {
             Users
           </Link>
         </nav>
+        <ModeToggle></ModeToggle>
       </div>
     </header>
   );
