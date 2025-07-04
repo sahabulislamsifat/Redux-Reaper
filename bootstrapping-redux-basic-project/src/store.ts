@@ -6,7 +6,7 @@ import taskReducer from "./features/task/taskSlice";
 export const store = configureStore({
   reducer: {
     counter: reducer,
-    tasks: taskReducer,
+    todo: taskReducer,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
