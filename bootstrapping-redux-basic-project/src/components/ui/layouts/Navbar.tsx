@@ -24,7 +24,7 @@ const Navbar = () => {
           </Link> */}
           <Link
             to="/users"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-md transition duration-200"
+            className="bg-blue-500 ml-[1180px] hover:bg-blue-600 text-white px-4 py-1.5 rounded-md transition duration-200"
           >
             Users
           </Link>
