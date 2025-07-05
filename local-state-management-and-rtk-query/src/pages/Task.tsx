@@ -7,12 +7,12 @@ const Task = () => {
   const task = useAppSelector(selectTask);
   // console.log(task);
 
-  const onEdit = () => {
-    console.log("hello ");
-  };
-  const onDelete = () => {
-    console.log("hello ");
-  };
+  // const onEdit = () => {
+  //   console.log("hello ");
+  // };
+  // const onDelete = () => {
+  //   console.log("hello");
+  // };
 
   return (
     <div className="container mx-auto">
@@ -21,7 +21,7 @@ const Task = () => {
         <AddTaskModal></AddTaskModal>
       </div>
       {task.map((task) => (
-        <TaskCard onEdit={onEdit} onDelete={onDelete} task={task}></TaskCard>
+        <TaskCard task={task}></TaskCard>
       ))}
     </div>
   );

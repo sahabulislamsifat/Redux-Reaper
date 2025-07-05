@@ -9,26 +9,45 @@
 //   onDelete: (id: string) => void;
 // }
 
-import type { ITask } from "@/types";
+import { useAppDispatch } from "@/features/hook/hook";
+import { deleteTask, toggleCompeteState } from "@/features/task/taskSlice";
+import { CheckIcon } from "lucide-react";
+import { Checkbox } from "../checkbox";
+// import type { IProps } from "@/pages/Task";
 
-interface IProps {
-  task: ITask;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  isCompleted: boolean;
+  priority: "low" | "medium" | "high";
 }
 
-const TaskCard = ({ task, onEdit, onDelete }: IProps) => {
-  const { title, priority, description, dueDate, isComplicated, id } = task;
+interface TaskCardProps {
+  task: Task;
+}
+
+const TaskCard = ({ task }: TaskCardProps) => {
+  const { title, priority, description, dueDate, isCompleted, id } = task;
+
+  const dispatch = useAppDispatch();
 
   return (
-    <div className=" shadow-md rounded my-5 p-5 w-full max-w-md border mx-auto border-gray-200 hover:shadow-lg transition">
+    <div className="shadow-md rounded my-5 p-5 w-full max-w-md border mx-auto border-gray-200 hover:shadow-lg transition">
       <div className="flex justify-between items-center mb-3">
-        <h2 className="text-xl font-semibold ">{title}</h2>
+        <h2
+          className={`text-xl font-semibold ${
+            isCompleted ? "line-through text-gray-400" : ""
+          }`}
+        >
+          {title}
+        </h2>
         <span
           className={`text-xs px-2 py-1 rounded-full font-semibold ${
-            priority === "High"
+            priority === "high"
               ? "bg-red-100 text-red-600"
-              : priority === "Medium"
+              : priority === "medium"
               ? "bg-yellow-100 text-yellow-600"
               : "bg-green-100 text-green-600"
           }`}
@@ -36,27 +55,36 @@ const TaskCard = ({ task, onEdit, onDelete }: IProps) => {
           {priority} Priority
         </span>
       </div>
+
       <p className="mb-2">{description}</p>
 
-      <div className="flex justify-between text-sm text-gray-100 mt-4">
+      <div className="flex justify-between text-sm text-gray-500 mt-4">
         <p>
           <strong>Due:</strong> {new Date(dueDate).toLocaleDateString()}
         </p>
         <p>
-          <strong>Complex:</strong> {isComplicated ? "Yes" : "No"}
+          <strong>Completed:</strong> {isCompleted ? "Yes" : "No"}
         </p>
       </div>
 
       <div className="mt-5 flex justify-end gap-3">
-        <button
-          onClick={() => onEdit(id)}
-          className="px-4 py-1 text-sm bg-blue-100 text-blue-600 rounded hover:bg-blue-200"
+        <Checkbox
+          checked={isCompleted}
+          onClick={() => dispatch(toggleCompeteState(id))}
+          className={` text-sm rounded-none mt-[6px] flex items-center gap-1 transition ${
+            isCompleted
+              ? "bg-green-100 text-green-600 hover:bg-green-200"
+              : "bg-yellow-100 text-yellow-600 hover:bg-yellow-200"
+          }`}
+          title="Toggle Completed"
         >
-          Edit
-        </button>
+          <CheckIcon size={16} />
+          {isCompleted ? "Done" : "Mark Done"}
+        </Checkbox>
+
         <button
-          onClick={() => onDelete(id)}
-          className="px-4 py-1 text-sm bg-red-100 text-red-600 rounded hover:bg-red-200"
+          onClick={() => dispatch(deleteTask(id))}
+          className="px-4 py-1 text-sm bg-red-100 text-red-600 rounded-none hover:bg-red-200"
         >
           Delete
         </button>
