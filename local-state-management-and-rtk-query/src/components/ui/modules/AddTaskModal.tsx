@@ -68,7 +68,12 @@ export function AddTaskModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Task</Button>
+        <Button
+          variant="outline"
+          className="bg-green-400 text-gray-700 dark:bg-green-400 dark:text-gray-700 dark:hover:bg-green-300 dark:hover:text-gray-500 cursor-pointer rounded-none"
+        >
+          Add Task
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
