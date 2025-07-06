@@ -9,10 +9,11 @@
 //   onDelete: (id: string) => void;
 // }
 
-import { useAppDispatch } from "@/features/hook/hook";
+import { useAppDispatch, useAppSelector } from "@/features/hook/hook";
 import { deleteTask, toggleCompeteState } from "@/features/task/taskSlice";
 import { CheckIcon } from "lucide-react";
 import { Checkbox } from "../checkbox";
+import { selectUser } from "@/features/user/userSlice";
 // import type { IProps } from "@/pages/Task";
 
 interface Task {
@@ -22,6 +23,7 @@ interface Task {
   dueDate: string;
   isCompleted: boolean;
   priority: "low" | "medium" | "high";
+  assignTo?: string; // Add this property, adjust type as needed
 }
 
 interface TaskCardProps {
@@ -32,6 +34,12 @@ const TaskCard = ({ task }: TaskCardProps) => {
   const { title, priority, description, dueDate, isCompleted, id } = task;
 
   const dispatch = useAppDispatch();
+
+  const users = useAppSelector(selectUser);
+  console.log(users);
+  console.log(task.assignTo);
+
+  const assignUser = users.find((user) => user.id === task.assignTo);
 
   return (
     <div className="shadow-md rounded my-5 p-5 w-full max-w-md border mx-auto border-gray-200 hover:shadow-lg transition">
@@ -55,7 +63,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
           {priority} Priority
         </span>
       </div>
-
+      <p>Assign To : {assignUser ? assignUser.title : "No One"}</p>
       <p className="mb-2">{description}</p>
 
       <div className="flex justify-between text-sm text-gray-500 mt-4">

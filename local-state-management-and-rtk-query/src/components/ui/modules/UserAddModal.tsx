@@ -20,25 +20,23 @@ import {
 } from "../form";
 import { useForm } from "react-hook-form";
 import { Input } from "../input";
-import { Textarea } from "../textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../select";
-import { Popover, PopoverContent, PopoverTrigger } from "../popover";
-import { Calendar } from "../calendar";
-import { CalendarIcon } from "lucide-react";
+// import { Textarea } from "../textarea";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "../select";
+// import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+// import { Calendar } from "../calendar";
+// import { CalendarIcon } from "lucide-react";
 
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/features/hook/hook";
-import { addTask } from "@/features/task/taskSlice";
-import type { ITask } from "@/types";
-import { selectUser } from "@/features/user/userSlice";
-import { useState } from "react";
+// import { format } from "date-fns";
+// import { cn } from "@/lib/utils";
+import { useAppDispatch } from "@/features/hook/hook";
+import { addUser } from "@/features/user/userSlice";
+import type { IUser } from "@/types";
 
 // ✅ Proper interface
 interface AddTaskFormData {
@@ -48,8 +46,8 @@ interface AddTaskFormData {
   dueDate: Date | undefined;
 }
 
-export function AddTaskModal() {
-  const form = useForm<AddTaskFormData & { assignTo: string }>({
+export function UserAddModal() {
+  const form = useForm<AddTaskFormData>({
     defaultValues: {
       title: "",
       description: "",
@@ -60,32 +58,27 @@ export function AddTaskModal() {
 
   const dispatch = useAppDispatch();
 
-  const users = useAppSelector(selectUser);
-
-  const [open, setOpen] = useState(false);
-
   // ✅ Correct onSubmit type (no need to use SubmitErrorHandler)
   const onSubmit = (data: AddTaskFormData) => {
-    dispatch(addTask(data as unknown as ITask));
+    dispatch(addUser(data as unknown as IUser));
     console.log("Submitted:", data);
     form.reset(); // Reset form after submit
-    setOpen(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button
           variant="outline"
           className="bg-green-400 text-gray-700 dark:bg-green-400 dark:text-gray-700 dark:hover:bg-green-300 dark:hover:text-gray-500 cursor-pointer rounded-none"
         >
-          Add Task
+          Add User
         </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add New Task</DialogTitle>
+          <DialogTitle>Add New User</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -96,7 +89,7 @@ export function AddTaskModal() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Task Title</FormLabel>
+                  <FormLabel>User Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter task title" {...field} />
                   </FormControl>
@@ -106,7 +99,7 @@ export function AddTaskModal() {
             />
 
             {/* Description */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
@@ -118,10 +111,10 @@ export function AddTaskModal() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Priority */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="priority"
               render={({ field }) => (
@@ -145,38 +138,10 @@ export function AddTaskModal() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
-            {/* User */}
-            <FormField
-              control={form.control}
-              name="assignTo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Assign To</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select user" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {users.map((user) => (
-                        <SelectItem key={user.id} value={user.id}>
-                          {user.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            /> */}
 
             {/* Due Date */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="dueDate"
               render={({ field }) => (
@@ -216,7 +181,7 @@ export function AddTaskModal() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Footer */}
             <DialogFooter className="pt-4">
@@ -225,7 +190,7 @@ export function AddTaskModal() {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit">Save Task</Button>
+              <Button type="submit">Save User</Button>
             </DialogFooter>
           </form>
         </Form>

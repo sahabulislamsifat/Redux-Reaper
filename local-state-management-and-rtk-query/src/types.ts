@@ -5,4 +5,12 @@ export interface ITask {
   dueDate: string;
   isCompleted: boolean;
   priority: "high" | "medium" | "low";
+  assignTo: string | null;
+}
+
+export interface IUser {
+  id: string;
+  title: string;
+  // age: number;
+  // isMarried: boolean;
 }
