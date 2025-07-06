@@ -34,10 +34,10 @@ import { CalendarIcon } from "lucide-react";
 
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/features/hook/hook";
-import { addTask } from "@/features/task/taskSlice";
-import type { ITask } from "@/types";
-import { selectUser } from "@/features/user/userSlice";
+// import { useAppDispatch } from "@/features/hook/hook";
+// import { addTask } from "@/features/task/taskSlice";
+// import type { ITask } from "@/types";
+// import { selectUser } from "@/features/user/userSlice";
 import { useState } from "react";
 
 // ✅ Proper interface
@@ -58,15 +58,15 @@ export function AddTaskModal() {
     },
   });
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const users = useAppSelector(selectUser);
+  // const users = useAppSelector(selectUser);
 
   const [open, setOpen] = useState(false);
 
   // ✅ Correct onSubmit type (no need to use SubmitErrorHandler)
   const onSubmit = (data: AddTaskFormData) => {
-    dispatch(addTask(data as unknown as ITask));
+    // dispatch(addTask(data as unknown as ITask));
     console.log("Submitted:", data);
     form.reset(); // Reset form after submit
     setOpen(false);
@@ -163,11 +163,11 @@ export function AddTaskModal() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {users.map((user) => (
-                        <SelectItem key={user.id} value={user.id}>
+                      {/* {users.map((user) => ( */}
+                      {/* <SelectItem key={user.id} value={user.id}>
                           {user.title}
                         </SelectItem>
-                      ))}
+                      ))} */}
                     </SelectContent>
                   </Select>
                   <FormMessage />

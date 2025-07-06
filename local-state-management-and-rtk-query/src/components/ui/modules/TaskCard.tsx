@@ -9,11 +9,11 @@
 //   onDelete: (id: string) => void;
 // }
 
-import { useAppDispatch, useAppSelector } from "@/features/hook/hook";
-import { deleteTask, toggleCompeteState } from "@/features/task/taskSlice";
+// import { useAppDispatch, useAppSelector } from "@/features/hook/hook";
+// import { deleteTask, toggleCompeteState } from "@/features/task/taskSlice";
 import { CheckIcon } from "lucide-react";
 import { Checkbox } from "../checkbox";
-import { selectUser } from "@/features/user/userSlice";
+// import { selectUser } from "@/features/user/userSlice";
 // import type { IProps } from "@/pages/Task";
 
 interface Task {
@@ -31,15 +31,15 @@ interface TaskCardProps {
 }
 
 const TaskCard = ({ task }: TaskCardProps) => {
-  const { title, priority, description, dueDate, isCompleted, id } = task;
+  const { title, priority, description, dueDate, isCompleted } = task;
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const users = useAppSelector(selectUser);
-  console.log(users);
+  // const users = useAppSelector(selectUser);
+  // console.log(users);
   console.log(task.assignTo);
 
-  const assignUser = users.find((user) => user.id === task.assignTo);
+  // const assignUser = users.find((user) => user.id === task.assignTo);
 
   return (
     <div className="shadow-md rounded my-5 p-5 w-full max-w-md border mx-auto border-gray-200 hover:shadow-lg transition">
@@ -63,7 +63,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
           {priority} Priority
         </span>
       </div>
-      <p>Assign To : {assignUser ? assignUser.title : "No One"}</p>
+      {/* <p>Assign To : {assignUser ? assignUser.title : "No One"}</p> */}
       <p className="mb-2">{description}</p>
 
       <div className="flex justify-between text-sm text-gray-500 mt-4">
@@ -78,7 +78,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
       <div className="mt-5 flex justify-end gap-3">
         <Checkbox
           checked={isCompleted}
-          onClick={() => dispatch(toggleCompeteState(id))}
+          // onClick={() => dispatch(toggleCompeteState(id))}
           className={` text-sm rounded-none mt-[6px] flex items-center gap-1 transition ${
             isCompleted
               ? "bg-green-100 text-green-600 hover:bg-green-200"
@@ -91,7 +91,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
         </Checkbox>
 
         <button
-          onClick={() => dispatch(deleteTask(id))}
+          // onClick={() => dispatch(deleteTask(id))}
           className="px-4 py-1 text-sm bg-red-100 text-red-600 rounded-none hover:bg-red-200"
         >
           Delete

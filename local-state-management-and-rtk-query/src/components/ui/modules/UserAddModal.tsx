@@ -34,9 +34,9 @@ import { Input } from "../input";
 
 // import { format } from "date-fns";
 // import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/features/hook/hook";
-import { addUser } from "@/features/user/userSlice";
-import type { IUser } from "@/types";
+// import { useAppDispatch } from "@/features/hook/hook";
+// import { addUser } from "@/features/user/userSlice";
+// import type { IUser } from "@/types";
 
 // ✅ Proper interface
 interface AddTaskFormData {
@@ -56,11 +56,11 @@ export function UserAddModal() {
     },
   });
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   // ✅ Correct onSubmit type (no need to use SubmitErrorHandler)
   const onSubmit = (data: AddTaskFormData) => {
-    dispatch(addUser(data as unknown as IUser));
+    // dispatch(addUser(data as unknown as IUser));
     console.log("Submitted:", data);
     form.reset(); // Reset form after submit
   };
